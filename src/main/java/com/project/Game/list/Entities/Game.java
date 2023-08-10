@@ -1,4 +1,4 @@
-package com.project.Game.list.Entities;
+package com.project.Game.list.entities;
 
 import java.util.Objects;
 

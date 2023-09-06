@@ -2,6 +2,10 @@ package com.project.Game.list.entities;
 
 import java.util.Objects;
 
+import org.springframework.beans.BeanUtils;
+
+import com.project.Game.list.dto.GameDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +36,10 @@ public class Game {
     private String longDescription;
     
     public Game() {
+    }
+
+    public Game (GameDTO entity){
+        BeanUtils.copyProperties(entity, this);
     }
 
     public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,

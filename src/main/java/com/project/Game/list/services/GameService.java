@@ -1,6 +1,7 @@
 package com.project.Game.list.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.project.Game.list.dto.GameMinDTO;
 import com.project.Game.list.entities.Game;
 import com.project.Game.list.projections.GameMinProjection;
 import com.project.Game.list.repositories.GameRepository;
+import com.project.Game.list.services.exceptions.GameNotFoundException;
 
 @Service
 public class GameService {
@@ -28,10 +30,10 @@ public class GameService {
     }
 
     public GameDTO findById(Long id){
-        Game result = gameRepository.findById(id).get();
-        return new GameDTO(result);
+        Optional<Game> result = gameRepository.findById(id);
+        result.orElseThrow(() -> new GameNotFoundException(id));
+        return new GameDTO(result.get());
     }
-
     public Game insertGame(Game entity){
         return gameRepository.save(entity);
     }

@@ -34,7 +34,12 @@ public class GameService {
         result.orElseThrow(() -> new GameNotFoundException(id));
         return new GameDTO(result.get());
     }
+
     public Game insertGame(Game entity){
         return gameRepository.save(entity);
+    }
+
+    public void deleteById(Long id){
+        gameRepository.deleteById(id);
     }
 }

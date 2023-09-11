@@ -2,7 +2,6 @@ package com.project.Game.list.controllers;
 
 import java.util.List;
 
-import com.project.Game.list.entities.GameList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

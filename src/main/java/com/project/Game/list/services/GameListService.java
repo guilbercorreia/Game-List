@@ -1,5 +1,10 @@
 package com.project.Game.list.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.project.Game.list.dto.GameListDTO;
 import com.project.Game.list.entities.GameList;
 import com.project.Game.list.projections.GameMinProjection;
@@ -7,14 +12,6 @@ import com.project.Game.list.repositories.GameListRepository;
 import com.project.Game.list.repositories.GameRepository;
 
 import jakarta.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class GameListService {

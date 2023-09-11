@@ -19,7 +19,6 @@ import com.project.Game.list.dto.GameDTO;
 import com.project.Game.list.dto.GameMinDTO;
 import com.project.Game.list.entities.Game;
 import com.project.Game.list.services.GameService;
-import com.project.Game.list.services.exceptions.GameNotFoundException;
 
 @RestController
 @RequestMapping(value = "/games")
@@ -58,9 +57,6 @@ public class GameController {
 
     @DeleteMapping(value = "/{id}")
     public void deleteById(@PathVariable Long id){
-        GameDTO game = gameService.findById(id);
-        if(game == null){
-            throw new GameNotFoundException(id);
-        }else gameService.deleteById(id);
+      gameService.deleteById(id);
     }
 }

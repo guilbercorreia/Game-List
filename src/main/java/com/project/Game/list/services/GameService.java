@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.project.Game.list.dto.GameDTO;
@@ -12,6 +13,7 @@ import com.project.Game.list.entities.Game;
 import com.project.Game.list.projections.GameMinProjection;
 import com.project.Game.list.repositories.GameRepository;
 import com.project.Game.list.services.exceptions.GameNotFoundException;
+import com.project.Game.list.services.exceptions.IntegrityViolationExcepion;
 
 @Service
 public class GameService {
@@ -40,6 +42,13 @@ public class GameService {
     }
 
     public void deleteById(Long id){
-        gameRepository.deleteById(id);
+        Optional<Game> result = gameRepository.findById(id);
+        result.orElseThrow(() -> new GameNotFoundException(id));
+        try{
+         gameRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new IntegrityViolationExcepion(id);
+        }
     }
-}
+}        

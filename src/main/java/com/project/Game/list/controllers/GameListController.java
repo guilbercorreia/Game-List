@@ -2,7 +2,9 @@ package com.project.Game.list.controllers;
 
 import java.util.List;
 
+import com.project.Game.list.entities.GameList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,18 +30,22 @@ public class GameListController {
 
     @GetMapping(value = "/{listId}/games")
     public List<GameMinDTO> findByList(@PathVariable Long listId) {
-        List<GameMinDTO> lista = gameService.findByList(listId);
-        return lista;
+        return gameService.findByList(listId);
     }
 
     @GetMapping
     public List<GameListDTO> findAll() {
-        List<GameListDTO> lista = gameListService.findAll();
-        return lista;
+        return gameListService.findAll();
     }
     
     @PostMapping(value = "/{listId}/replacement")
 	public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body) {
 		gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());
 	}
+
+    @PostMapping
+    public ResponseEntity<GameListDTO> addList(@RequestBody GameListDTO body) {
+        gameListService.addList(body);
+        return ResponseEntity.status(201).build();
+    }
 }

@@ -1,5 +1,6 @@
 package com.project.Game.list.entities;
 
+import com.project.Game.list.dto.GameListDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,10 @@ public class GameList {
     public GameList(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public GameList(GameListDTO list) {
+        this.name = list.getName();
     }
 
     public Long getId() {

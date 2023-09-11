@@ -9,6 +9,9 @@ import com.project.Game.list.repositories.GameRepository;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +44,9 @@ public class GameListService {
 		for (int i = min; i <= max; i++) {
 			gameListRepository.updateBelongingPosition(listId, list.get(i).getId(), i);
 		}
+    }
+
+    public void addList(GameListDTO list){
+        gameListRepository.save(new GameList(list));
     }
 }

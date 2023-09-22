@@ -1,6 +1,6 @@
-package com.project.Game.list.dto;
+package com.project.Game.list.dto.game;
 
-import com.project.Game.list.entities.GameList;
+import com.project.Game.list.entities.game.GameList;
 
 public class GameListDTO {
     

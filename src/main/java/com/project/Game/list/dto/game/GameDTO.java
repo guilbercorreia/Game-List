@@ -1,11 +1,12 @@
-package com.project.Game.list.dto;
+package com.project.Game.list.dto.game;
 
 import org.springframework.beans.BeanUtils;
 
-import com.project.Game.list.entities.Game;
+import com.project.Game.list.entities.game.Game;
 
-public class GameRequestDTO {
+public class GameDTO {
 
+    private Long id;
     private String title;
     private Integer year;
     private String genre;
@@ -15,13 +16,21 @@ public class GameRequestDTO {
     private String shortDescription;
     private String longDescription;
     
-    public GameRequestDTO(){
+    public GameDTO(){
     }
 
-    public GameRequestDTO (Game entity){
+    public GameDTO (Game entity){
         BeanUtils.copyProperties(entity, this);
     }
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }

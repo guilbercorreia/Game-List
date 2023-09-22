@@ -1,6 +1,6 @@
 package com.project.Game.list.repositories;
 
-import com.project.Game.list.entities.GameList;
+import com.project.Game.list.entities.game.GameList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

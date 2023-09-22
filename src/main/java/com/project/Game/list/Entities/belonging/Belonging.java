@@ -1,7 +1,9 @@
-package com.project.Game.list.entities;
+package com.project.Game.list.entities.belonging;
 
 import java.util.Objects;
 
+import com.project.Game.list.entities.game.Game;
+import com.project.Game.list.entities.game.GameList;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

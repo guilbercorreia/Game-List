@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.project.Game.list.dto.GameDTO;
-import com.project.Game.list.dto.GameMinDTO;
-import com.project.Game.list.dto.GameRequestDTO;
-import com.project.Game.list.entities.Game;
+import com.project.Game.list.dto.game.GameDTO;
+import com.project.Game.list.dto.game.GameMinDTO;
+import com.project.Game.list.dto.game.GameRequestDTO;
+import com.project.Game.list.entities.game.Game;
 import com.project.Game.list.services.GameService;
 
 @RestController

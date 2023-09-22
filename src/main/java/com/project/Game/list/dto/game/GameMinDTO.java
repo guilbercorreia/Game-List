@@ -1,6 +1,6 @@
-package com.project.Game.list.dto;
+package com.project.Game.list.dto.game;
 
-import com.project.Game.list.entities.Game;
+import com.project.Game.list.entities.game.Game;
 import com.project.Game.list.projections.GameMinProjection;
 
 

@@ -1,6 +1,6 @@
-package com.project.Game.list.entities;
+package com.project.Game.list.entities.game;
 
-import com.project.Game.list.dto.GameListDTO;
+import com.project.Game.list.dto.game.GameListDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

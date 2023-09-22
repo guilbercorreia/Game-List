@@ -1,11 +1,11 @@
-package com.project.Game.list.entities;
+package com.project.Game.list.entities.game;
 
 import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
 
-import com.project.Game.list.dto.GameDTO;
-import com.project.Game.list.dto.GameRequestDTO;
+import com.project.Game.list.dto.game.GameDTO;
+import com.project.Game.list.dto.game.GameRequestDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

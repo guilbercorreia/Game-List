@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.Game.list.dto.GameListDTO;
-import com.project.Game.list.entities.GameList;
+import com.project.Game.list.dto.game.GameListDTO;
+import com.project.Game.list.entities.game.GameList;
 import com.project.Game.list.projections.GameMinProjection;
 import com.project.Game.list.repositories.GameListRepository;
 import com.project.Game.list.repositories.GameRepository;

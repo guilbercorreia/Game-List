@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.project.Game.list.dto.GameDTO;
-import com.project.Game.list.dto.GameMinDTO;
-import com.project.Game.list.entities.Game;
+import com.project.Game.list.dto.game.GameDTO;
+import com.project.Game.list.dto.game.GameMinDTO;
+import com.project.Game.list.entities.game.Game;
 import com.project.Game.list.projections.GameMinProjection;
 import com.project.Game.list.repositories.GameRepository;
 import com.project.Game.list.services.exceptions.GameNotFoundException;

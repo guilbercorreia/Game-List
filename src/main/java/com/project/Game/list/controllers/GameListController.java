@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.Game.list.dto.GameListDTO;
-import com.project.Game.list.dto.GameMinDTO;
+import com.project.Game.list.dto.game.GameListDTO;
+import com.project.Game.list.dto.game.GameMinDTO;
 import com.project.Game.list.dto.ReplacementDTO;
 import com.project.Game.list.services.GameListService;
 import com.project.Game.list.services.GameService;

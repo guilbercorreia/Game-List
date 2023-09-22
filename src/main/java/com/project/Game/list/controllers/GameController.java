@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.project.Game.list.dto.GameDTO;
 import com.project.Game.list.dto.GameMinDTO;
+import com.project.Game.list.dto.GameRequestDTO;
 import com.project.Game.list.entities.Game;
 import com.project.Game.list.services.GameService;
 
@@ -40,7 +41,7 @@ public class GameController {
     } 
 
     @PostMapping
-    public ResponseEntity<Void> insertGame(@RequestBody GameDTO entity){
+    public ResponseEntity<Void> insertGame(@RequestBody GameRequestDTO entity){
         Game game = new Game(entity);
         gameService.insertGame(game);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/games/{id}").buildAndExpand(game.getId()).toUri();

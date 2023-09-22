@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.springframework.beans.BeanUtils;
 
 import com.project.Game.list.dto.GameDTO;
+import com.project.Game.list.dto.GameRequestDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,6 +37,10 @@ public class Game {
     private String longDescription;
     
     public Game() {
+    }
+
+    public Game (GameRequestDTO entity){
+        BeanUtils.copyProperties(entity, this);
     }
 
     public Game (GameDTO entity){

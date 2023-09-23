@@ -22,5 +22,6 @@ public class Init implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         userRepository.save(new User(1L, "joao", "joaocarlos@gmail.com", passwordEncoder.encode("12345678"), UserRole.ADMIN));
+        userRepository.save(new User(2L, "abigail", "abigail.lopes@gmail.com", passwordEncoder.encode("1234444"), UserRole.USER));
     }
 }

@@ -1,15 +1,12 @@
 package com.project.Game.list.entities.user;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.project.Game.list.entities.game.Game;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +23,8 @@ public class User implements UserDetails {
     @Column(length = 100, nullable = false)
     private String password;
     private UserRole role;
+    @OneToMany
+    private List<Game> likeGames = new ArrayList<>() ;
     
     public User() {
     }
@@ -64,6 +63,10 @@ public class User implements UserDetails {
         return role;
     }
 
+    public List<Game> getLikeGames() {
+        return likeGames;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,9 +83,9 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role == UserRole.ADMIN ){
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),new SimpleGrantedAuthority("ROlE_USER"));
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),new SimpleGrantedAuthority("ROLE_USER"));
         }
-        else return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     public String getPassword() {

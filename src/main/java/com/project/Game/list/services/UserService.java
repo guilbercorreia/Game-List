@@ -1,5 +1,6 @@
 package com.project.Game.list.services;
 
+import com.project.Game.list.services.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,18 +20,23 @@ public class UserService {
     private UserRepository userRepository;
 
     public User findById(Long id){
-        return userRepository.findById(id).get();
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    public void insertUser(UserRequestDTO user)  {
-        User userToSave = new User(user.getName(), user.getLogin(), passwordEncoder.encode(user.getPassword()), UserRole.USER );
+    public void insertUser(UserRequestDTO user) {
+        var verifyUser = userRepository.findByLogin(user.getLogin());
+        if (verifyUser != null) {
+            throw new IllegalArgumentException("Email já cadastrado");
+        }
+        var userToSave = new User(user.getName(), user.getLogin(), passwordEncoder.encode(user.getPassword()), UserRole.USER );
         userRepository.save(userToSave);
     }
 
-    public void deleteUser(Long id, String userfromrequest){
-        var user = userRepository.findById(id).get();
-        if (user.getLogin().equals(userfromrequest)){
+    public void deleteUser(Long id, String userFromRequest){
+        var user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        if (user.getLogin().equals(userFromRequest)){
             userRepository.deleteById(user.getId());
         }
+        else throw new IllegalArgumentException("Operação invalida");
     }
 }

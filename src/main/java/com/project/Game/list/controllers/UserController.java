@@ -2,6 +2,7 @@ package com.project.Game.list.controllers;
 
 import com.project.Game.list.dto.user.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<Void> insertUser(@RequestBody UserRequestDTO user){
         userService.insertUser(user);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> removeUser(Authentication username, @PathVariable Long id){

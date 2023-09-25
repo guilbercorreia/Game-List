@@ -13,7 +13,7 @@ import com.project.Game.list.entities.game.Game;
 import com.project.Game.list.projections.GameMinProjection;
 import com.project.Game.list.repositories.GameRepository;
 import com.project.Game.list.services.exceptions.GameNotFoundException;
-import com.project.Game.list.services.exceptions.IntegrityViolationExcepion;
+import com.project.Game.list.services.exceptions.IntegrityViolationException;
 
 @Service
 public class GameService {
@@ -48,7 +48,7 @@ public class GameService {
          gameRepository.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            throw new IntegrityViolationExcepion(id);
+            throw new IntegrityViolationException(id);
         }
     }
 }        

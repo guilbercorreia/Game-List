@@ -1,7 +1,5 @@
 package com.project.Game.list.config;
 
-import com.project.Game.list.services.SecurityDBService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,9 +15,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-
-   @Autowired
-   private SecurityDBService securityService;
 
    @Bean
    public PasswordEncoder passwordEncoder(){
@@ -37,6 +32,8 @@ public class WebSecurityConfig {
             .requestMatchers(AntPathRequestMatcher.antMatcher (HttpMethod.DELETE ,"/lists/**")).hasRole("ADMIN")
             .requestMatchers(AntPathRequestMatcher.antMatcher (HttpMethod.POST, "/lists/**")).hasRole("ADMIN")
             .requestMatchers(AntPathRequestMatcher.antMatcher (HttpMethod.PUT, "/lists/**")).hasRole("ADMIN")
+            .requestMatchers(AntPathRequestMatcher.antMatcher (HttpMethod.POST, "/users/**")).permitAll()
+            .requestMatchers(AntPathRequestMatcher.antMatcher (HttpMethod.DELETE, "/users/**")).hasAnyRole("ADMIN", "USER")
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
             .anyRequest().authenticated()
         )

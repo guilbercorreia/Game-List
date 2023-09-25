@@ -1,15 +1,23 @@
 package com.project.Game.list.entities.user;
 
-import com.project.Game.list.entities.game.Game;
-import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.project.Game.list.entities.game.Game;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_users")
@@ -24,13 +32,19 @@ public class User implements UserDetails {
     private String password;
     private UserRole role;
     @OneToMany
-    private List<Game> likeGames = new ArrayList<>() ;
+    private List<Game> likedGames = new ArrayList<>() ;
     
     public User() {
     }
 
     public User(Long id, String name, String login, String password, UserRole role) {
         this.id = id;
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+    public User(String name, String login, String password, UserRole role) {
         this.name = name;
         this.login = login;
         this.password = password;
@@ -62,9 +76,12 @@ public class User implements UserDetails {
     public UserRole getRole() {
         return role;
     }
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
     public List<Game> getLikeGames() {
-        return likeGames;
+        return likedGames;
     }
 
     @Override

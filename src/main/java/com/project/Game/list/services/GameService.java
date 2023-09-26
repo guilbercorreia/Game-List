@@ -3,6 +3,8 @@ package com.project.Game.list.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.project.Game.list.repositories.UserRepository;
+import com.project.Game.list.services.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ import com.project.Game.list.services.exceptions.IntegrityViolationException;
 @Service
 public class GameService {
 
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private GameRepository gameRepository;
     
@@ -51,4 +55,24 @@ public class GameService {
             throw new IntegrityViolationException(id);
         }
     }
-}        
+
+    public void likeGame(String user, Long id) {
+       var game = gameRepository.findById(id).orElseThrow(() -> new GameNotFoundException(id));
+       var userFromRepository = userRepository.findByLogin(user).orElseThrow(() -> new UserNotFoundException(""));
+       if (userFromRepository.getLikeGames().contains(game)){
+           throw new IllegalArgumentException("Jogo já curtido");
+       }
+       userFromRepository.getLikeGames().add(game);
+       userRepository.save(userFromRepository);
+    }
+
+	public void unlikeGame(String user, Long id) {
+		var game = gameRepository.findById(id).orElseThrow(() -> new GameNotFoundException(id));
+	    var userFromRepository = userRepository.findByLogin(user).orElseThrow(() -> new UserNotFoundException(""));
+	    if(userFromRepository.getLikeGames().contains(game)) {
+	    	userFromRepository.getLikeGames().remove(game);
+	    	userRepository.save(userFromRepository);
+	    }
+	    else throw new IllegalArgumentException("Você não curtiu esse jogo");
+	}
+}

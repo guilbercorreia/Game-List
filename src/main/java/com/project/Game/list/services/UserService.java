@@ -1,11 +1,13 @@
 package com.project.Game.list.services;
 
+import com.project.Game.list.repositories.GameRepository;
 import com.project.Game.list.services.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.project.Game.list.dto.user.UserRequestDTO;
+import com.project.Game.list.entities.game.Game;
 import com.project.Game.list.entities.user.User;
 import com.project.Game.list.entities.user.UserRole;
 import com.project.Game.list.repositories.UserRepository;
@@ -25,7 +27,7 @@ public class UserService {
 
     public void insertUser(UserRequestDTO user) {
         var verifyUser = userRepository.findByLogin(user.getLogin());
-        if (verifyUser != null) {
+        if (verifyUser.isPresent()) {
             throw new IllegalArgumentException("Email já cadastrado");
         }
         var userToSave = new User(user.getName(), user.getLogin(), passwordEncoder.encode(user.getPassword()), UserRole.USER );

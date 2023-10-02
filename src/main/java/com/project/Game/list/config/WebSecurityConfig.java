@@ -35,6 +35,8 @@ public class WebSecurityConfig {
             .requestMatchers(AntPathRequestMatcher.antMatcher (HttpMethod.POST, "/users/**")).permitAll()
             .requestMatchers(AntPathRequestMatcher.antMatcher (HttpMethod.DELETE, "/users/**")).hasAnyRole("ADMIN", "USER")
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+            .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui/**")).permitAll()
+            .requestMatchers(AntPathRequestMatcher.antMatcher("/v3/api-docs/**")).permitAll()
             .anyRequest().authenticated()
         )
         .headers(headers -> headers.disable())
